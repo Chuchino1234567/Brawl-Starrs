@@ -1,2 +1,2 @@
-# Brawl-Starrs
+# Brawl-Stars
 SIRIUS
