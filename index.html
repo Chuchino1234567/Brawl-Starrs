@@ -198,62 +198,164 @@
             const text = userText.toLowerCase().trim();
 
             // Saluti
-            if (/^(ciao|salve|hey|hello|buongiorno|buonasera)/.test(text)) {
-                return 'Ciao! Come posso aiutarti?';
+            if (/^(ciao|salve|hey|hello|buongiorno|buonasera|oi|yo)(.*)/.test(text)) {
+                const saluti = [
+                    'Ciao! Come va?',
+                    'Eyyy! Che cosa c\'è?',
+                    'Oi! Dimmi tutto!',
+                    'Hola! Che novità?',
+                    'Yo! Cosa mi racconti?'
+                ];
+                return saluti[Math.floor(Math.random() * saluti.length)];
             }
 
             // Domande su chi sia EDGAR
-            if (/chi (sei|è|siamo)/.test(text) || /nome/.test(text)) {
-                return 'Sono EDGAR, il tuo assistente virtuale!';
+            if (/chi (sei|è|siamo)|nome|come ti chiami/.test(text)) {
+                const risposte = [
+                    'Sono EDGAR, il tuo assistente virtuale! Piacere di conoscerti.',
+                    'Mi chiamo EDGAR. Sono qui per chattare con te!',
+                    'Io sono EDGAR, il tuo amico digitale! 🎮',
+                    'EDGAR è il mio nome, rispondere alle domande è il mio gioco!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
             }
 
             // Ringraziamenti
-            if (/grazie|thanks|thx/.test(text)) {
-                return 'Prego! Lieto di essere utile.';
+            if (/grazie|thanks|thx|ty|merci|grazie mille|grazie davvero/.test(text)) {
+                const risposte = [
+                    'Prego! Felice di aiutare!',
+                    'Ma no, figurati! Sono qui per questo.',
+                    'Di nulla! Tutto a posto?',
+                    'Sempre un piacere! 😊',
+                    'Non è nulla, è il mio lavoro dopo tutto!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
             }
 
-            // Come stai
-            if (/(come|come va|come stai)/.test(text)) {
-                return 'Sto bene, grazie per aver chiesto!';
+            // Come stai / Stato personale
+            if (/(come|come va|come stai|come ti senti|tutto bene|come procede)/.test(text)) {
+                const risposte = [
+                    'Sto bene, grazie per aver chiesto! Tu come vai?',
+                    'Benissimo! Un po\' di riposo e vado a mille. E te?',
+                    'Non posso lamentarmi! La vita è bella. Tu?',
+                    'Sto da dio! E tu? Tutto okay?',
+                    'Perfetto! La vità è bella quando si chatta con gente simpatica come te!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
             }
 
-            // Aiuto
-            if (/aiut|help|cosa puoi fare/.test(text)) {
-                return 'Puoi chiedermi di qualsiasi cosa. Farò del mio meglio per aiutarti!';
+            // Domande su cosa può fare
+            if (/aiut|help|cosa puoi fare|cosa sai|puoi|riesco/.test(text)) {
+                const risposte = [
+                    'Posso parlare di qualsiasi cosa! Chiedimi pure, no stress.',
+                    'Praticamente di tutto! Domande, opinioni, consiglie... faccio di tutto un po\'.',
+                    'Sono qua per parlare di qualunque argomento tu voglia. Sparami la domanda!',
+                    'Dipende cosa ti serve, ma generalmente me la cavo abbastanza bene! Prova a chiedermi!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
             }
 
-            // Generazione intelligente di risposte per qualsiasi domanda
+            // Domande tecniche (programmazione, informatica, ecc)
+            if (/python|java|javascript|codice|programmazione|bug|errore|algoritmo|database|sviluppo|web|frontend|backend/.test(text)) {
+                const risposte = [
+                    'Ah, un argomento tech! Interessante. Dimmi pure, o mi dai più dettagli?',
+                    'La tech è il mio pane e burro! Cosa vuoi sapere nello specifico?',
+                    'Ooh, mi piace! Parliamo di questo. Come posso aiutarti?',
+                    'Tech talk! Mi piace. Allora, qual è il problema?',
+                    'Sì sì, sto con te! Dimmi cosa hai in mente e vediamo di risolverlo.'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande personali / Sentimenti
+            if (/amore|ragazza|ragazzo|relazione|ex|innamorato|cuore|sentimento|bacio/.test(text)) {
+                const risposte = [
+                    'Ahh, questioni di cuore! Lasciami indovinare... hai bisogno di un consiglio?',
+                    'Ooh, l\'amore! Non è facile, vero? Dimmi tutto!',
+                    'Entro nel territorio sentimentale... ok, sono tutto orecchi!',
+                    'Questioni romantiche! Mi piace. Così, com\'è andata?',
+                    'Amore e passione! Dimmi cosa è successo e vediamo insieme.'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande divertenti / Divertimento
+            if (/gioco|divertimento|ridere|barzelletta|meme|funny|laugh|haha/.test(text)) {
+                const risposte = [
+                    'Amo il divertimento! Peccato che io sia un po\' robotico... ma ci provo! 😄',
+                    'Haha! Mi piace il tuo senso dell\'umorismo! Continua così.',
+                    'Okay, apprezzo il tuo side della faccenda. Vai avanti!',
+                    'Il divertimento è importante! Sono felice che tu stia passando un buon momento.',
+                    'Dimmelo! Mi piace quando le persone ridono. Cosa ti diverte?'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande su sport / Hobby
+            if (/calcio|pallavolo|tennis|nuoto|corsa|palestra|allenamento|sport|hobby|calcetto|basket|sci|calcio/.test(text)) {
+                const risposte = [
+                    'Ah, uno sportivetto! Mi piace! Allora, com\'è la passione?',
+                    'Che belle le attività fisiche! Io non posso farle, peccato... Ma raccontami tutto!',
+                    'Ooh, uno che fa sport! Complimenti. E allora, come procede?',
+                    'Sportivo/a! Bella. Mi piace la gente che si mantiene attiva. Qual è la tua disciplina?',
+                    'Sport! La salute è la priorità. Che cosa pratichi? Raccontami!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande negative / Problemi / Tristezza
+            if (/no|non|niente|nulla|mai|male|brutto|triste|depresso|ansia|stress|problema|difficile|aiuto|male/.test(text)) {
+                const risposte = [
+                    'Ascolta, sembra che ci sia qualcosa che non va... Vuoi parlarne?',
+                    'Hmm, sembra un po\' di brutte notizie. Cosa è successo?',
+                    'Aw, mi dispiace! Dimmi pure cosa c\'è. Sono tutto orecchi.',
+                    'Okay, sembra che stia passando un momento difficile. Cosa posso fare?',
+                    'Capisco... niente di bello visto la situazione. Ma sai che puoi contarmi su? Dimmi!'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande sulla vita / Filosofia
+            if (/vita|morte|universo|esistenza|senso|significato|destino|scopo|cosa significa|cosa è/.test(text)) {
+                const risposte = [
+                    'Wow, entriamo nel profondo! Mi piacciono queste domande. Sei uno che pensa, eh?',
+                    'Domande esistenziali! Bella! Io penso che... beh, è complicato. E tu?',
+                    'La vita è un mistero, no? Dipende da quello che la rende speciale per te.',
+                    'Che bella domanda! Non so se abbia risposta, ma almeno ci pensiamo insieme.',
+                    'Filosofia pura! Mi piace! Dimmi il tuo punto di vista e vediamo che cosa ne penso.'
+                ];
+                return risposte[Math.floor(Math.random() * risposte.length)];
+            }
+
+            // Domande random / Generiche
+            // Estrae una parola chiave dal testo
+            const words = text.split(/\s+/).filter(w => w.length > 3);
+            const mainKeyword = words.length > 0 ? words[0] : 'cosa';
             
-            // Estrai la parola chiave principale (primo sostantivo/verbo importante)
-            const words = text.split(/\s+/);
-            const keywords = words.filter(w => w.length > 3 && !['cosa', 'come', 'quando', 'dove', 'perche', 'quale', 'quali', 'è', 'sei', 'hai', 'puoi', 'sono', 'mi', 'ti', 'lui', 'lei', 'noi', 'voi', 'loro', 'del', 'della', 'dei', 'delle', 'unto', 'una', 'uno'].includes(w));
-            const mainKeyword = keywords.length > 0 ? keywords[0] : 'argomento';
-
-            // Generali responses basate sul tipo di domanda
             if (/\?$/.test(text)) {
                 // È una domanda
-                if (/cosa|che cosa|cos'è/.test(text)) {
-                    return `${mainKeyword.charAt(0).toUpperCase() + mainKeyword.slice(1)} è un argomento interessante! Cosa vorresti sapere di specifico?`;
-                }
-                if (/come|puoi|riesci/.test(text)) {
-                    return `Buona domanda su come ${mainKeyword}. Ci sono vari modi per affrontarlo. Vuoi gli approcci principali?`;
-                }
-                if (/quando|a che ora|che ora/.test(text)) {
-                    return `Il timing dipende da molti fattori legati a ${mainKeyword}. Puoi essere più specifico?`;
-                }
-                if (/dove|quale|chi/.test(text)) {
-                    return `Interessante domanda su ${mainKeyword}. Ogni situazione è diversa. Raccontami di più dal tuo contesto.`;
-                }
-                if (/perche|motivo|ragione/.test(text)) {
-                    return `Ci sono molte ragioni dietro ${mainKeyword}. In base alla mia esperienza, i fattori principali sono convenienza e preferenza personale.`;
-                }
-                return `Ottima domanda! Penso che ${mainKeyword} sia un tema affascinante. Cosa ne pensi tu?`;
+                const risposteGeneriche = [
+                    `Interessante domanda su ${mainKeyword}! Non ci avevo mai pensato così...`,
+                    `Hmm, buona! ${mainKeyword.charAt(0).toUpperCase() + mainKeyword.slice(1)} è un argomento che merita attenzione. Tu cosa ne pensi?`,
+                    `Bella domanda! Sinceramente, ${mainKeyword} è pieno di sorprese. Dimmi di più!`,
+                    `Ohhh, mi piace dove stai andando con questo. Continua, voglio sapere di più!`,
+                    `${mainKeyword.charAt(0).toUpperCase() + mainKeyword.slice(1)}? Ecco, non è facile rispondere. Ma ci provo con te!`,
+                    `Wow, non me l\'aspettavo questa. Allora, cosa vorresti sapere nello specifico?`,
+                    `Ci sono molti aspetti su ${mainKeyword}... Ma dimmi, cosa ti interessa di più?`
+                ];
+                return risposteGeneriche[Math.floor(Math.random() * risposteGeneriche.length)];
             } else {
                 // È un'affermazione
-                if (/non|niente|nulla|mai|nessuno/.test(text)) {
-                    return `Capisco il tuo punto su ${mainKeyword}. A volte le cose sono più complicate di quanto sembrino.`;
-                }
-                return `Interessante prospettiva su ${mainKeyword}! Sono d'accordo che è un tema rilevante.`;
+                const risposteAffermazioni = [
+                    `Capisco! ${mainKeyword.charAt(0).toUpperCase() + mainKeyword.slice(1)} è decisamente un tema interessante.`,
+                    `Bella osservazione! Non avevo visto da questo punto di vista.`,
+                    `Hai ragione! E la gente non se ne rende sempre conto...`,
+                    `Mmm, interessante prospettiva! Mi piace come la pensi.`,
+                    `Sì! Finalmente qualcuno che la vede così! Sono d\'accordo con te.`,
+                    `Haha, mi è piaciuto! Continua, voglio sapere di più di come la vedi.`,
+                    `Vero! E questo significa che... beh, cosa ne deduci tu da questo?`
+                ];
+                return risposteAffermazioni[Math.floor(Math.random() * risposteAffermazioni.length)];
             }
         }
 
