@@ -222,8 +222,39 @@
                 return 'Puoi chiedermi di qualsiasi cosa. Farò del mio meglio per aiutarti!';
             }
 
-            // Fallback
-            return 'non ho capito';
+            // Generazione intelligente di risposte per qualsiasi domanda
+            
+            // Estrai la parola chiave principale (primo sostantivo/verbo importante)
+            const words = text.split(/\s+/);
+            const keywords = words.filter(w => w.length > 3 && !['cosa', 'come', 'quando', 'dove', 'perche', 'quale', 'quali', 'è', 'sei', 'hai', 'puoi', 'sono', 'mi', 'ti', 'lui', 'lei', 'noi', 'voi', 'loro', 'del', 'della', 'dei', 'delle', 'unto', 'una', 'uno'].includes(w));
+            const mainKeyword = keywords.length > 0 ? keywords[0] : 'argomento';
+
+            // Generali responses basate sul tipo di domanda
+            if (/\?$/.test(text)) {
+                // È una domanda
+                if (/cosa|che cosa|cos'è/.test(text)) {
+                    return `${mainKeyword.charAt(0).toUpperCase() + mainKeyword.slice(1)} è un argomento interessante! Cosa vorresti sapere di specifico?`;
+                }
+                if (/come|puoi|riesci/.test(text)) {
+                    return `Buona domanda su come ${mainKeyword}. Ci sono vari modi per affrontarlo. Vuoi gli approcci principali?`;
+                }
+                if (/quando|a che ora|che ora/.test(text)) {
+                    return `Il timing dipende da molti fattori legati a ${mainKeyword}. Puoi essere più specifico?`;
+                }
+                if (/dove|quale|chi/.test(text)) {
+                    return `Interessante domanda su ${mainKeyword}. Ogni situazione è diversa. Raccontami di più dal tuo contesto.`;
+                }
+                if (/perche|motivo|ragione/.test(text)) {
+                    return `Ci sono molte ragioni dietro ${mainKeyword}. In base alla mia esperienza, i fattori principali sono convenienza e preferenza personale.`;
+                }
+                return `Ottima domanda! Penso che ${mainKeyword} sia un tema affascinante. Cosa ne pensi tu?`;
+            } else {
+                // È un'affermazione
+                if (/non|niente|nulla|mai|nessuno/.test(text)) {
+                    return `Capisco il tuo punto su ${mainKeyword}. A volte le cose sono più complicate di quanto sembrino.`;
+                }
+                return `Interessante prospettiva su ${mainKeyword}! Sono d'accordo che è un tema rilevante.`;
+            }
         }
 
         function sendMessage() {
